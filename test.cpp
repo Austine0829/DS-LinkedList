@@ -23,6 +23,7 @@ class Information{
 
     void add(string name, int age);
     void removeAt(int node);
+    void updateAt(int node, string newName, int newAge);
     void display();
     void at(int node);
 };
@@ -95,15 +96,38 @@ void Information :: removeAt(int node){
     }
 }
 
+void Information :: updateAt(int node, string newName, int newAge){
+
+    Person *current = head;
+    int index = 0;
+
+    while (current != nullptr && index < node)
+    {
+        current = current->next;
+        index++;
+    }
+
+    if (current != nullptr)
+    {
+        current->name = newName;
+        current->age = newAge;
+    }
+
+    else
+    {
+        cout << "Node Not Found\n";
+    }
+}
+
 void Information :: display(){
 
     Person *current = head;
 
     while (current != nullptr)
     {
-        cout << "Name: " << current->name << "\n";
-        cout << "Age: " << current->age << "\n";
-        cout << "-----------------------------\n";
+        cout << "Name: " << current->name << " ";
+        cout << "Age: " << current->age << " ";
+        cout << "-------> ";
 
         current = current->next;
     }
@@ -130,13 +154,13 @@ int main(){
     Information use;
 
     use.add("Austine", 21);
-    use.add("Feeniks", 24);
-    use.add("Andre", 25);
-    use.add("Bodz", 21);
+    use.add("Winter", 23);
+    use.add("Giselle", 21);
+    use.add("Karina", 22);
 
-    use.removeAt(0);
+    use.updateAt(1, "Ning Ning", 22);
 
     use.display();
-    
+
     return 0;
 }
